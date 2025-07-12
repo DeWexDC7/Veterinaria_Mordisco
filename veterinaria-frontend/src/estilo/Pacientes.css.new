@@ -1,0 +1,429 @@
+/* Estilos para la gestión de pacientes */
+.pacientes-container {
+  width: 96%;
+  max-width: 1250px;
+  margin: 0 auto 30px auto;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  padding: 20px;
+  border-top: 3px solid var(--primary-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pacientes-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
+}
+
+.pacientes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header-content {
+  flex: 1;
+}
+
+.pacientes-title {
+  color: var(--primary-color);
+  margin: 0 0 8px 0;
+  font-size: 1.5rem;
+  text-shadow: 0 0 10px rgba(92, 173, 138, 0.3);
+  display: flex;
+  align-items: center;
+}
+
+.pacientes-title::before {
+  content: '🐾';
+  margin-right: 10px;
+  font-size: 1.5rem;
+}
+
+.pacientes-description {
+  color: var(--text-secondary);
+  margin: 0;
+  font-size: 0.9rem;
+  max-width: 700px;
+  line-height: 1.5;
+}
+
+.pacientes-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* Indicadores de estado de salud */
+.estado-salud {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.estado-salud-saludable {
+  background-color: rgba(46, 204, 113, 0.2);
+  color: #27ae60;
+  border: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+.estado-salud-tratamiento {
+  background-color: rgba(241, 196, 15, 0.2);
+  color: #f39c12;
+  border: 1px solid rgba(241, 196, 15, 0.3);
+}
+
+.estado-salud-critico {
+  background-color: rgba(231, 76, 60, 0.2);
+  color: #e74c3c;
+  border: 1px solid rgba(231, 76, 60, 0.3);
+}
+
+/* Ficha de paciente */
+.ficha-paciente {
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border-color);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.ficha-item {
+  margin-bottom: 15px;
+}
+
+.ficha-label {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+}
+
+.ficha-value {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* Badges para especies */
+.badge-especie {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-right: 5px;
+}
+
+.badge-especie.Perro {
+  background: rgba(52, 152, 219, 0.15);
+  color: #3498db;
+  border: 1px solid rgba(52, 152, 219, 0.3);
+}
+
+.badge-especie.Gato {
+  background: rgba(155, 89, 182, 0.15);
+  color: #9b59b6;
+  border: 1px solid rgba(155, 89, 182, 0.3);
+}
+
+.badge-especie.Ave {
+  background: rgba(230, 126, 34, 0.15);
+  color: #e67e22;
+  border: 1px solid rgba(230, 126, 34, 0.3);
+}
+
+.badge-especie.Reptil {
+  background: rgba(46, 204, 113, 0.15);
+  color: #2ecc71;
+  border: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+.badge-especie.Roedor {
+  background: rgba(241, 196, 15, 0.15);
+  color: #f1c40f;
+  border: 1px solid rgba(241, 196, 15, 0.3);
+}
+
+.badge-especie.Otro {
+  background: rgba(149, 165, 166, 0.15);
+  color: #95a5a6;
+  border: 1px solid rgba(149, 165, 166, 0.3);
+}
+
+/* Estilos mejorados para el select de propietario */
+.select-propietario {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+.select-propietario:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(92, 173, 138, 0.25);
+  outline: none;
+}
+
+.select-propietario-selected {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 1px rgba(92, 173, 138, 0.3);
+}
+
+.form-label-hint {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  font-weight: normal;
+  font-style: italic;
+}
+
+.form-hint {
+  margin-top: 5px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  padding: 5px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  border-left: 3px solid var(--primary-color);
+}
+
+.form-group-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.add-propietario-btn {
+  padding: 5px 10px;
+  font-size: 0.75rem;
+  background-color: rgba(92, 173, 138, 0.1);
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.add-propietario-btn:hover {
+  background-color: rgba(92, 173, 138, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Estilos para la ficha de paciente mejorada */
+.ficha-paciente-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.ficha-paciente-header {
+  border-bottom: 1px solid rgba(92, 173, 138, 0.2);
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.ficha-paciente-title {
+  color: var(--primary-color);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+}
+
+.ficha-genero {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  margin-left: 10px;
+}
+
+.ficha-paciente-label {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+}
+
+.ficha-paciente-value {
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.ficha-paciente-value a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.ficha-paciente-value a:hover {
+  text-decoration: underline;
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(92, 173, 138, 0.2), transparent);
+  margin: 15px 0;
+}
+
+.ficha-paciente-section {
+  padding: 0 0 10px 0;
+}
+
+.section-title {
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px dashed rgba(92, 173, 138, 0.2);
+}
+
+.propietario-info {
+  padding: 10px;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.05);
+  margin-bottom: 15px;
+}
+
+.propietario-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.propietario-link:hover {
+  text-decoration: underline;
+}
+
+.historial-clinico {
+  padding-top: 10px;
+  border-top: 1px solid var(--border-color);
+}
+
+.historial-clinico-input {
+  width: 100%;
+  padding: 10px;
+  line-height: 1.5;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  height: 45px;
+}
+
+/* Estilos específicos para filtros de especie/raza */
+.filter-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.filter-select {
+  flex: 1;
+  min-width: 120px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+}
+
+/* Archivo adjunto de fotos */
+.foto-upload {
+  margin-top: 10px;
+}
+
+.foto-preview {
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-top: 10px;
+  border: 2px solid var(--primary-color);
+}
+
+.foto-upload-label {
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  background-color: rgba(92, 173, 138, 0.1);
+  border: 1px dashed var(--primary-color);
+  border-radius: 6px;
+  color: var(--primary-color);
+  margin-top: 5px;
+  font-size: 0.85rem;
+}
+
+.foto-upload-label:hover {
+  background-color: rgba(92, 173, 138, 0.2);
+}
+
+.foto-upload-input {
+  display: none;
+}
+
+/* Modal de confirmación */
+.modal-confirm {
+  max-width: 450px;
+}
+
+.confirm-message {
+  text-align: center;
+  padding: 10px 0;
+}
+
+/* Responsividad específica para pacientes */
+@media (max-width: 767px) {
+  .pacientes-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Estilos específicos para elementos dentro del modal de pacientes */
+/* Los estilos base del modal vienen de Usuarios.css */
+
+/* Estilos para el historial clínico */
+.historial-clinico {
+  margin-top: 15px;
+}
+
+.historial-clinico-input {
+  width: 100%;
+  padding: 10px;
+  line-height: 1.5;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  height: 45px;
+}
+
+/* Estilos para placeholders en inputs */
+.modal-body input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+  font-style: italic;
+}

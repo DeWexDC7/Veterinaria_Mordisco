@@ -1,0 +1,19 @@
+.not-found {
+  padding: 20px;
+  text-align: center;
+}
+
+.back-home-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 15px;
+  background: #5cad8a;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.back-home-button:hover {
+  background: #468c6f;
+}

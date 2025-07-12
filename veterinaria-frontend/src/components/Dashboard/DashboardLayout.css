@@ -1,0 +1,323 @@
+/* Variables CSS para todo el dashboard */
+:root {
+  --primary-color: #5cad8a;
+  --primary-hover: #489a77;
+  --secondary-color: #f9f9f9;
+  --text-color: #333333;
+  --text-light: #ffffff;
+  --error-color: #e74c3c;
+  --success-color: #2ecc71;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --input-border: #e0e0e0;
+  --input-focus: #5cad8a;
+  --sidebar-width: 260px;
+  --sidebar-collapsed-width: 70px;
+  --header-height: 70px;
+  --background-light: #f9f9f9;
+  --card-bg-light: #ffffff;
+  --border-color-light: #e0e0e0;
+  
+  /* Colores para el modo oscuro */
+  --background-dark: #1a1a1a;
+  --card-bg-dark: #2d2d2d;
+  --text-color-dark: #f0f0f0;
+  --border-color-dark: #444444;
+  
+  /* Estilos para el tema claro (default) */
+  --background-color: var(--background-light);
+  --card-bg: var(--card-bg-light);
+  --text-primary: var(--text-color);
+  --border-color: var(--border-color-light);
+}
+
+body.dark-mode {
+  background-color: var(--background-dark);
+  color: var(--text-color-dark);
+}
+
+/* Estilos para el tema oscuro */
+.dark-mode {
+  --background-color: var(--background-dark);
+  --card-bg: var(--card-bg-dark);
+  --text-primary: var(--text-color-dark);
+  --border-color: var(--border-color-dark);
+}
+
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--background-color);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.main-content {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  transition: margin-left 0.3s ease, width 0.3s ease;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - var(--sidebar-width));
+}
+
+.main-content.sidebar-closed {
+  margin-left: var(--sidebar-collapsed-width);
+}
+
+.main-content.sidebar-collapsed {
+  margin-left: var(--sidebar-collapsed-width);
+  width: calc(100% - var(--sidebar-collapsed-width));
+}
+
+.dashboard-header {
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.dashboard-header h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: var(--primary-color); /* Verde como en la imagen */
+  font-weight: 500;
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 4px;
+  color: var(--text-primary);
+}
+
+.menu-toggle:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Hamburger icon */
+.hamburger {
+  position: relative;
+  width: 20px;
+  height: 2px;
+  background-color: var(--primary-color);
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background-color: var(--primary-color);
+  display: block;
+  transition: transform 0.3s ease, top 0.3s ease;
+}
+
+.hamburger::before {
+  top: -6px;
+}
+
+.hamburger::after {
+  top: 6px;
+}
+
+/* Transformación a X cuando el sidebar está abierto */
+.dashboard-container.sidebar-open .menu-toggle .hamburger {
+  background-color: transparent; /* La línea del medio desaparece */
+}
+
+.dashboard-container.sidebar-open .menu-toggle .hamburger::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.dashboard-container.sidebar-open .menu-toggle .hamburger::after {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
+.dashboard-main {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: var(--background-color);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logout-button {
+  background-color: transparent;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.logout-button:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+@media (max-width: 991px) {
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+  }
+  
+  .main-content.sidebar-open,
+  .main-content.sidebar-collapsed {
+    margin-left: 0;
+    width: 100%;
+  }
+  
+  .sidebar-open .sidebar-overlay {
+    display: block;
+  }
+  
+  .dashboard-header {
+    padding: 0 15px;
+  }
+  
+  .dashboard-header h1 {
+    font-size: 1.2rem;
+  }
+  
+  .logout-button {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+  
+  .dashboard-title {
+    font-size: 1.5rem;
+  }
+  
+  .dashboard-welcome {
+    font-size: 1rem;
+  }
+  
+  .dashboard-main {
+    padding: 15px;
+  }
+  
+  .dashboard-card {
+    padding: 15px;
+  }
+  
+  .dashboard-card-value {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .menu-toggle {
+    display: none;
+  }
+}
+
+/* Estilo para cards en el dashboard */
+.dashboard-card {
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-top: 3px solid; /* Borde superior con color dinámico */
+}
+
+.dashboard-card.appointments {
+  border-top-color: #e74c3c;
+}
+
+.dashboard-card.patients {
+  border-top-color: #3498db;
+}
+
+.dashboard-card.clients {
+  border-top-color: #f39c12;
+}
+
+.dashboard-card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.dashboard-card-icon {
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-card-title {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.dashboard-card-value {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+/* Overlay para dispositivos móviles cuando el sidebar está abierto */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1049;
+}
+
+/* Panel de control título */
+.dashboard-title {
+  color: var(--primary-color);
+  font-size: 2rem;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.dashboard-welcome {
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  text-align: center;
+}

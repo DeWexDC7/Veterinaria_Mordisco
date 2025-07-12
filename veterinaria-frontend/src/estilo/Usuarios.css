@@ -1,0 +1,585 @@
+/* Estilos para la gestión de usuarios */
+.usuarios-container {
+  width: 96%;
+  max-width: 1250px;
+  margin: 0 auto 30px auto;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  padding: 20px;
+  border-top: 3px solid var(--primary-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.usuarios-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
+}
+
+.usuarios-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.usuarios-title {
+  color: var(--primary-color);
+  margin: 0;
+  font-size: 1.3rem;
+  text-shadow: 0 0 10px rgba(92, 173, 138, 0.3);
+}
+
+.usuarios-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* Datatable personalizada sin jQuery */
+.datatable-container {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.05) 100%);
+  position: relative;
+}
+
+.datatable-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(92, 173, 138, 0.5), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.datatable-container:hover::before {
+  opacity: 1;
+}
+
+.datatable {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+}
+
+.datatable thead {
+  background-color: rgba(92, 173, 138, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.datatable thead::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+}
+
+.datatable th {
+  padding: 10px 12px;
+  text-align: center;
+  font-weight: 600;
+  position: relative;
+  cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background-color 0.2s ease;
+  font-size: 0.85rem;
+}
+
+.datatable th.sortable:hover {
+  background-color: rgba(92, 173, 138, 0.2);
+}
+
+.datatable th.sortable::after {
+  content: '↕';
+  position: absolute;
+  right: 8px;
+  opacity: 0.3;
+}
+
+.datatable th.sorted-asc::after {
+  content: '↑';
+  opacity: 1;
+  color: var(--primary-color);
+}
+
+.datatable th.sorted-desc::after {
+  content: '↓';
+  opacity: 1;
+  color: var(--primary-color);
+}
+
+.datatable tbody tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background-color 0.2s;
+}
+
+.datatable tbody tr:last-child {
+  border-bottom: none;
+}
+
+.datatable tbody tr:hover {
+  background-color: rgba(92, 173, 138, 0.1);
+  /* Se elimina transform: scale(1.01); para evitar el scroll */
+}
+
+.datatable td {
+  padding: 10px 12px;
+  white-space: nowrap;
+  transition: color 0.2s;
+  font-size: 0.82rem;
+}
+
+.datatable-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.datatable-pagination {
+  display: flex;
+  gap: 5px;
+}
+
+.datatable-pagination button {
+  padding: 6px 12px;
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.datatable-pagination button::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0%;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: width 0.2s ease;
+}
+
+.datatable-pagination button:hover:not(:disabled) {
+  background-color: rgba(92, 173, 138, 0.1);
+}
+
+.datatable-pagination button:hover::before:not(:disabled) {
+  width: 80%;
+}
+
+.datatable-pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.datatable-pagination button.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 10px rgba(92, 173, 138, 0.4);
+}
+
+.datatable-info {
+  font-size: 0.82rem;
+  color: var(--text-primary);
+}
+
+.datatable-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.datatable-search {
+  position: relative;
+  margin-bottom: 15px;
+  width: 100%;
+  max-width: 350px;
+}
+
+.datatable-search input {
+  width: 100%;
+  padding: 8px 15px 8px 35px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  font-size: 0.82rem;
+}
+
+/* Estilos para botones */
+.btn {
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-info {
+  background-color: #9c27b0;
+  color: white;
+}
+
+.btn-info:hover {
+  background-color: #7b1fa2;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(92, 173, 138, 0.1);
+}
+
+.btn-danger {
+  background-color: var(--error-color);
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #c0392b;
+}
+
+.btn-sm {
+  padding: 4px 8px;
+  font-size: 0.75rem;
+}
+
+.btn-action {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilos para modales */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 0;
+  opacity: 1;
+}
+
+.modal-content {
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 650px;
+  position: relative;
+  overflow: hidden;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  transform: none;
+  opacity: 1;
+}
+
+.modal-header {
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-title {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-primary);
+  opacity: 0.8;
+  z-index: 2;
+}
+
+.modal-close:hover {
+  /* Sin efectos hover */
+}
+
+.modal-body {
+  padding: 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.modal-body .row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.modal-body .row .form-group {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Mejoras para los inputs en el modal - sin transiciones */
+.modal-body input:focus,
+.modal-body select:focus,
+.modal-body textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(92, 173, 138, 0.2);
+}
+
+.input-error {
+  border-color: #e74c3c !important;
+  background-color: rgba(231, 76, 60, 0.05) !important;
+}
+
+/* Sin efectos hover en los botones del modal */
+.modal-footer .btn {
+  position: relative;
+}
+
+.modal-footer .btn:hover {
+  /* Sin efectos hover */
+}
+
+.modal-footer {
+  padding: 15px 20px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  background-color: var(--card-bg);
+  position: relative;
+  z-index: 1;
+}
+
+/* Formulario */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(92, 173, 138, 0.2);
+}
+
+.form-error {
+  color: var(--error-color);
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+
+/* Mensajes de alerta */
+.alert {
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.alert-success {
+  background-color: rgba(46, 204, 113, 0.15);
+  border: 1px solid rgba(46, 204, 113, 0.3);
+  color: var(--success-color);
+}
+
+.alert-danger {
+  background-color: rgba(231, 76, 60, 0.15);
+  border: 1px solid rgba(231, 76, 60, 0.3);
+  color: var(--error-color);
+}
+
+.alert-info {
+  background-color: rgba(52, 152, 219, 0.15);
+  border: 1px solid rgba(52, 152, 219, 0.3);
+  color: #3498db;
+}
+
+.alert-icon {
+  font-size: 1.2rem;
+}
+
+.alert-content {
+  flex: 1;
+}
+
+.alert-title {
+  font-weight: 600;
+  margin: 0 0 5px 0;
+}
+
+.alert-message {
+  margin: 0;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease;
+}
+
+/* Estados de carga */
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.spinner {
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgba(92, 173, 138, 0.3);
+  border-radius: 50%;
+  border-top-color: var(--primary-color);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive para tablas */
+@media (max-width: 991px) {
+  .datatable th,
+  .datatable td {
+    padding: 10px 8px;
+    font-size: 0.85rem;
+  }
+  
+  .usuarios-container {
+    width: 98%;
+    padding: 15px;
+  }
+  
+  .datatable-search {
+    max-width: 100%;
+  }
+  
+  .datatable-footer {
+    gap: 15px;
+  }
+}
+
+/* Responsividad */
+@media (max-width: 767px) {
+  .usuarios-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .datatable-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .datatable th,
+  .datatable td {
+    padding: 8px 6px;
+    font-size: 0.8rem;
+  }
+  
+  .modal-content {
+    max-width: 100%;
+  }
+}
+
+/* Selector de registros por página */
+.items-per-page {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.82rem;
+  color: var(--text-primary);
+}
+
+.items-per-page select {
+  padding: 4px 6px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 0.82rem;
+}
+
+.items-per-page select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}

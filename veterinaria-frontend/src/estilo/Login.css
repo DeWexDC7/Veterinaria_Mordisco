@@ -1,0 +1,157 @@
+:root {
+  --primary-color: #5cad8a; /* Cambiado de azul a verde suave para combinar con la imagen */
+  --primary-hover: #489a77; /* Versión más oscura del verde para el hover */
+  --secondary-color: #f9f9f9;
+  --text-color: #333333;
+  --error-color: #e74c3c;
+  --success-color: #2ecc71;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --input-border: #e0e0e0;
+  --input-focus: #5cad8a; /* Actualizado para mantener consistencia */
+  --card-dark: #2d2d2d;
+  --text-light: #ffffff;
+}
+
+.cascading-right {
+  margin-right: -50px;
+}
+
+@media (max-width: 900px) {
+  .cascading-right {
+    margin-right: 0;
+  }
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url('../assets/images/fondopatronlogin.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-form {
+  background: var(--card-dark);
+  padding: 2.5rem 2rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 400px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 3px solid var(--primary-color);
+}
+
+.login-form:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.4);
+}
+
+.login-form h2 {
+  margin-bottom: 2rem;
+  margin-top: -0.5rem;
+  color: var(--text-light);
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+  position: relative;
+  width: 100%;
+}
+
+.form-group:first-of-type {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-weight: 500;
+  color: var(--text-light) !important;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+/* Estilos específicos para las etiquetas de correo y contraseña */
+.login-form .form-group label[for="correo"],
+.login-form .form-group label[for="contrasenia"] {
+  color: white !important;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease-in-out;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--text-light);
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(92, 173, 138, 0.25);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.form-group input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+  opacity: 0.7;
+}
+
+.login-button {
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: all 0.2s ease;
+  letter-spacing: 0.03em;
+  box-sizing: border-box;
+}
+
+.login-button:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.login-button:active {
+  transform: translateY(1px);
+}
+
+.error-message {
+  color: var(--error-color);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+  width: 100%;
+  padding: 0.7rem 1rem;
+  background-color: rgba(231, 76, 60, 0.2);
+  border-left: 3px solid var(--error-color);
+  border-radius: 4px;
+}
+
+@media (max-width: 576px) {
+  .login-form {
+    padding: 2rem 1.5rem;
+  }
+}
