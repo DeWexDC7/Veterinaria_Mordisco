@@ -390,12 +390,6 @@ function GestionClientes() {
             >
               ID
             </th>
-            <th 
-              className={`sortable ${sortConfig.key === 'nombre_completo' ? `sorted-${sortConfig.direction}` : ''}`}
-              onClick={() => requestSort('nombre_completo')}
-            >
-              Nombre
-            </th>
              <th 
               className={`sortable ${sortConfig.key === 'cedula' ? `sorted-${sortConfig.direction}` : ''}`}
               onClick={() => requestSort('cedula')}
@@ -403,6 +397,12 @@ function GestionClientes() {
               
             >
               Cédula
+            </th>
+            <th 
+              className={`sortable ${sortConfig.key === 'nombre_completo' ? `sorted-${sortConfig.direction}` : ''}`}
+              onClick={() => requestSort('nombre_completo')}
+            >
+              Nombre
             </th>
             <th 
               className={`sortable ${sortConfig.key === 'correo' ? `sorted-${sortConfig.direction}` : ''}`}
@@ -452,8 +452,8 @@ function GestionClientes() {
             paginatedData.map(cliente => (
               <tr key={cliente.id_cliente}>
                 <td>{cliente.id_cliente}</td>
-                <td>{cliente.nombre_completo}</td>
                 <td>{cliente.cedula}</td>
+                <td>{cliente.nombre_completo}</td>
                 <td>{cliente.correo}</td>
                 <td>{cliente.telefono}</td>
                 <td>{new Date(cliente.creado_en).toLocaleDateString()}</td>
@@ -543,21 +543,6 @@ function GestionClientes() {
             </div>
             <div className="modal-body">
               <div className="form-group">
-                <label htmlFor="nombre_completo">Nombre completo</label>
-                <input
-                  type="text"
-                  id="nombre_completo"
-                  name="nombre_completo"
-                  value={formData.nombre_completo}
-                  onChange={handleInputChange}
-                  placeholder="Ingrese nombre completo del cliente"
-                />
-                {formErrors.nombre_completo && (
-                  <div className="form-error">{formErrors.nombre_completo}</div>
-                )}
-              </div>
-              
-              <div className="form-group">
                 <label htmlFor="cedula">Cédula</label>
                 <input
                   type="text"
@@ -569,6 +554,21 @@ function GestionClientes() {
                 />
                 {formErrors.cedula && (
                   <div className="form-error">{formErrors.cedula}</div>
+                )}
+              </div>
+              
+              <div className="form-group">
+                <label htmlFor="nombre_completo">Nombre completo</label>
+                <input
+                  type="text"
+                  id="nombre_completo"
+                  name="nombre_completo"
+                  value={formData.nombre_completo}
+                  onChange={handleInputChange}
+                  placeholder="Ingrese nombre completo del cliente"
+                />
+                {formErrors.nombre_completo && (
+                  <div className="form-error">{formErrors.nombre_completo}</div>
                 )}
               </div>
               
